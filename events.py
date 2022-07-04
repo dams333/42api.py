@@ -8,3 +8,6 @@ def get_event_users(token: str, event_id: str):
 
 def get_event_id(token: str, name: str):
     return get_events_ids(token, name)[0]
+
+def get_event_users_from_name(token: str, name: str):
+    return get_event_users(token, get_event_id(token, name))
