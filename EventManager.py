@@ -9,4 +9,4 @@ class EventManager:
         self.client = client
 
     def get_events_by_name(self, campus, name):
-        return [Event(event) for event in get(self.client.get_token(), "/v2/events?campus_id=" + str(campus) + "&filter[name]=" + name)]
+        return [Event(event, self.client) for event in get(self.client.get_token(), "/v2/events?campus_id=" + str(campus) + "&filter[name]=" + name)]
