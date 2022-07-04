@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from api import *
 
 def get_events_ids(token: str, name: str):
