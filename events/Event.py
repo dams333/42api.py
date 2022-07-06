@@ -23,11 +23,11 @@ class Event:
 		self.updated_at = datetime.strptime(event["updated_at"], "%Y-%m-%dT%H:%M:%S.%f%z")
 		self.theme = []
 		for theme in event['themes']:
-			self.theme.append(Theme(theme))
+			self.theme.append(Theme(theme, self.client))
 		if(event['waitlist'] != None):
-			self.waitlist = Waitlist(event['waitlist'])
+			self.waitlist = Waitlist(event['waitlist'], self.client)
 		else:
 			self.waitlist = None
   
 	def users(self):
-		return [User(user['user']) for user in get(self.client.get_token(), "v2/events/" + str(self.id) + "/events_users")]
+		return [User(user['user'], self.client) for user in get(self.client.get_token(), "v2/events/" + str(self.id) + "/events_users")]

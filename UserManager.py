@@ -12,4 +12,4 @@ class UserManager:
         users = get(self.client.get_token(), "/v2/users?filter[login]=" + login)
         if(len(users) == 0):
             return None
-        return User(users[0])
+        return User(users[0], self.client)

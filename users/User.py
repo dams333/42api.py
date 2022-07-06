@@ -1,5 +1,8 @@
+from api import *
+from users.Title import *
+
 class User:
-    def __init__(self, user_dict):
+    def __init__(self, user_dict, client):
         self.id = user_dict["id"]
         self.email = user_dict["email"]
         self.login = user_dict["login"]
@@ -24,4 +27,7 @@ class User:
         self.updated_at = user_dict["updated_at"]
         self.alumnized_at = user_dict["alumnized_at"]
         self.alumni = user_dict["alumni?"]
-    
+        self.client = client
+
+    def titles(self):
+        return [Title(title, self.client) for title in get(self.client.get_token(), "/v2/users/" + str(self.id) + "/titles")]
