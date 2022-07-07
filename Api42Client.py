@@ -25,4 +25,5 @@ class Api42Client:
     def get_token(self):
         if self.expires_at == 0 or self.expires_at < datetime.now():
             self.token = get_token(self.client_id, self.client_secret)
+            self.expires_at = datetime.now() + timedelta(0, get_token_expire_in(self.token))
         return self.token
