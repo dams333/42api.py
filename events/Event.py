@@ -1,6 +1,7 @@
 from events.Theme import *
 from events.Waitlist import *
 from users.User import *
+from events.Feedback import *
 from datetime import datetime
 from api import *
 
@@ -31,6 +32,9 @@ class Event:
   
 	def users(self):
 		return [User(user['user'], self.client) for user in get(self.client.get_token(), "v2/events/" + str(self.id) + "/events_users")]
+
+	def feedbacks(self):
+		return [Feedback(feedback, self.client) for feedback in get(self.client.get_token(), "v2/events/" + str(self.id) + "/feedbacks")]
 
 	def toJSON(self):
 		return {
