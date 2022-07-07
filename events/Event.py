@@ -50,5 +50,4 @@ class Event:
 			"updated_at": self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
 			"theme": [theme.toJSON() for theme in self.theme],
 			"waitlist": self.waitlist.toJSON() if self.waitlist != None else None,
-			"Users": [user.toJSON() for user in self.users()]
 		}
