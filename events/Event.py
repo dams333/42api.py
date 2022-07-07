@@ -31,3 +31,24 @@ class Event:
   
 	def users(self):
 		return [User(user['user'], self.client) for user in get(self.client.get_token(), "v2/events/" + str(self.id) + "/events_users")]
+
+	def toJSON(self):
+		return {
+			"id": self.id,
+			"name": self.name,
+			"description": self.description,
+			"location": self.location,
+			"kind": self.kind,
+			"max_people": self.max_people,
+			"nbr_subscribers": self.nbr_subscribers,
+			"begin_at": self.begin_at.strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
+			"end_at": self.end_at.strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
+			"campus_ids": self.campus_ids,
+			"cursus_ids": self.cursus_ids,
+			"prohibition_of_cancellation": self.prohibition_of_cancellation,
+			"created_at": self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
+			"updated_at": self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
+			"theme": [theme.toJSON() for theme in self.theme],
+			"waitlist": self.waitlist.toJSON() if self.waitlist != None else None,
+			"Users": [user.toJSON() for user in self.users()]
+		}

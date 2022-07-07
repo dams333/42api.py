@@ -7,3 +7,11 @@ class Theme:
         self.name = theme['name']
         self.updated_at = datetime.strptime(theme['updated_at'], "%Y-%m-%dT%H:%M:%S.%f%z")
         self.client = client
+
+    def toJSON(self):
+        return {
+            "created_at": self.created_at,
+            "id": self.id,
+            "name": self.name,
+            "updated_at": self.updated_at
+        }

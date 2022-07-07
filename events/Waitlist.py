@@ -8,3 +8,12 @@ class Waitlist:
         self.waitlistable_id = waitlist['waitlistable_id']
         self.waitlistable_type = waitlist['waitlistable_type']
         self.client = client
+
+    def toJSON(self):
+        return {
+            "created_at": self.created_at,
+            "id": self.id,
+            "updated_at": self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f%z"),
+            "waitlistable_id": self.waitlistable_id,
+            "waitlistable_type": self.waitlistable_type
+        }
