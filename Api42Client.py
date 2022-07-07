@@ -1,7 +1,7 @@
 import os
 from datetime import datetime, timedelta
-from EventManager import *
-from UserManager import *
+from events.EventManager import *
+from users.UserManager import *
 from api import *
 from dotenv import load_dotenv
 load_dotenv()
