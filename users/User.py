@@ -1,5 +1,6 @@
 from api import *
 from users.Title import *
+from users.Project import *
 import json
 from datetime import datetime
 
@@ -33,6 +34,15 @@ class User:
 
     def titles(self):
         return [Title(title, self.client) for title in get(self.client.get_token(), "/v2/users/" + str(self.id) + "/titles")]
+
+    def projects(self):
+        return [Project(project, self.client) for project in get(self.client.get_token(), "/v2/users/" + str(self.id) + "/projects_users?page[size]=100")]
+
+    def get_project(self, slug):
+        for project in self.projects():
+            if project.slug == slug:
+                return project
+        return None
 
     def toJSON(self):
         return {
